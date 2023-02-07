@@ -85,6 +85,7 @@ import pymongo
 import csv
 import streamlit as st
 import numpy as np
+from st_aggrid import GridOptionsBuilder, AgGrid, GridUpdateMode, DataReturnMode
 
 
 
@@ -145,3 +146,51 @@ df1=pd.DataFrame(np.random.randn(20,3),columns=["id","username","retweet"])
 
 st.line_chart(df1)
 st.write("""# My First App Hello * World!*""")
+
+
+
+
+
+
+
+
+df1=pd.DataFrame(np.random.randn(20,3),columns=["id","username","retweet"])
+
+#st.line_chart(df1,x="date",y=["id","content","username","retweet"])
+
+st.line_chart(df1)
+st.write("""Twitter SCrapping and Filtering*""")
+
+
+
+df = pd.read_csv(r'C:\Users\USER\Downloads\python36.csv')
+@st.experimental_memo
+def convert_df(df):
+   return df.to_csv(index=False).encode('utf-8')
+
+csv = convert_df(df)
+
+st.download_button(
+   "Press to Download",
+   csv,
+   "file.csv",
+   "text/csv",
+   key='download-csv'
+)
+
+
+
+
+
+
+
+
+df3=pd.read_csv(r'C:\Users\USER\Downloads\python36.csv',index_col=0)
+
+if st.checkbox('show dataframe'):
+    st.write(df3)
+    
+AgGrid(df3)
+
+
+
