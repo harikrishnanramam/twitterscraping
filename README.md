@@ -83,6 +83,9 @@ import json
 from pymongo import MongoClient
 import pymongo
 import csv
+import streamlit as st
+import numpy as np
+
 
 
 
@@ -136,3 +139,9 @@ mylist = [
   { "name": "Viola", "content": "Sideway 1633"}
 ]
 mycol.insert_many(mylist)
+df1=pd.DataFrame(np.random.randn(20,3),columns=["id","username","retweet"])
+
+#st.line_chart(df1,x="date",y=["id","content","username","retweet"])
+
+st.line_chart(df1)
+st.write("""# My First App Hello * World!*""")
